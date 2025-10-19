@@ -1,23 +1,44 @@
 {{define "base"}}
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Page Title</title>
-        {{block "css" .}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        {{end}}
-    </head>
-    <body>
-    {{block "content" .}}
+    <title>{{if .Title}}{{.Title}} | My Website{{else}}My Website{{end}}</title>
+    <meta name="description" content="Personal website built with Go templates. Showcasing projects, cloud engineering insights, and development notes.">
+    <meta name="author" content="Berk Akipek">
 
-    {{end}}
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+    <link rel="stylesheet" href="/static/css/style.css">
 
-    {{block "js" .}}
+    {{block "css" .}}{{end}}
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar">
+            <div class="logo">
+                <a href="/">MyWebsite</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/projects">Projects</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    {{end}}
-    </body>
-    </html>
-{{end}} 
+    <main>
+        {{block "content" .}}{{end}}
+    </main>
+
+    <footer>
+        <p>&copy; {{.Year.Year}} My Website — Powered by Go 💻</p>
+    </footer>
+
+    {{block "js" .}}{{end}}
+</body>
+</html>
+{{end}}

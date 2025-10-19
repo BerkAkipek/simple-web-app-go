@@ -1,15 +1,52 @@
 {{template "base" .}}
 
 {{define "content"}}
-    <header>
-        <h1>Welcome to My Page</h1>
-    </header>
+<main class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>{{.Heading}}</h1>
+            <p class="subheading">{{.Subheading}}</p>
+            <a href="/about" class="btn">Learn More</a>
+        </div>
+    </section>
 
-    <main>
-        <p>This is a simple HTML5 boilerplate template.</p>
-    </main>
+    <!-- About Section -->
+    <section class="about">
+        <h2>About This Website</h2>
+        <p>
+            This site is built with Go using the <strong>html/template</strong> package.
+            It’s fast, secure, and minimal. Here, you’ll find projects, tutorials, and insights about software engineering, 
+            DevOps, and cloud technologies.
+        </p>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 My Website</p>
-    </footer>
+    <!-- Features Section -->
+    <section class="features">
+        <h2>What You'll Find Here</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>🚀 Projects</h3>
+                <p>Explore Go-based projects and cloud-native applications designed for scalability and simplicity.</p>
+            </div>
+            <div class="feature-card">
+                <h3>☁️ Cloud Engineering</h3>
+                <p>Learn about AWS, Docker, CI/CD pipelines, and modern deployment strategies.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🧠 Learning</h3>
+                <p>Find tutorials, notes, and insights on programming, automation, and infrastructure as code.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; {{.Year.Year}} My Website — Built with Go 💻</p>
+    <nav class="footer-nav">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+    </nav>
+</footer>
 {{end}}

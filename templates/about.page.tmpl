@@ -15,6 +15,13 @@
             <h2>My Skills</h2>
             <p>Here you can list your skills or experience.</p>
             <p>This came from the data template: {{index .StringMap "test"}}</p>
+            <p>
+                {{if ne (index .StringMap "remote-ip") ""}}
+                    Your remote IP address is {{index .StringMap "remote-ip"}}
+                {{else}}
+                    There does not exists your IP in memory. Please visit <a href="/">Home Page</a> so server can set it.
+                {{end}}
+            </p>
         </section>
     </main>
 
