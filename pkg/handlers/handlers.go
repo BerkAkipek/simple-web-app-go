@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/BerkAkipek/simple-web-app-go/pkg/config"
+	"github.com/BerkAkipek/simple-web-app-go/pkg/models"
 	"github.com/BerkAkipek/simple-web-app-go/pkg/render"
 )
 
@@ -24,9 +25,14 @@ func NewHandlers(r *Repository) {
 }
 
 func (R *Repository) Home(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "home.page.tmpl")
+	render.RenderTemplate(w, "home.page.tmpl", &models.TemplateData{})
 }
 
 func (R *Repository) About(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "about.page.tmpl")
+	stringMap := make(map[string]string)
+	stringMap["test"] = "Hello World!"
+
+	render.RenderTemplate(w, "about.page.tmpl", &models.TemplateData{
+		StringMap: stringMap,
+	})
 }
