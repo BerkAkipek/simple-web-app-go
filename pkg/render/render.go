@@ -6,24 +6,34 @@ import (
 	"log"
 	"net/http"
 	"path/filepath"
+
+	"github.com/BerkAkipek/simple-web-app-go/pkg/config"
 )
+
+var app *config.AppConfig
+
+func NewTemplate(appConf *config.AppConfig) {
+	app = appConf
+}
 
 func RenderTemplate(w http.ResponseWriter, tmp string) {
 	// create a template cache
-	tempCache, err := createTemplateCache()
-	if err != nil {
-		log.Fatal(err)
+	var tempCache map[string]*template.Template
+	if app.UseCache {
+		tempCache = app.TemplateCache
+	} else {
+		tempCache, _ = CreateTemplateCache()
 	}
 
 	// get requested template cache
 	templ, ok := tempCache[tmp]
 	if !ok {
-		log.Fatal(err)
+		log.Fatal("Could not get template from cache")
 	}
 
 	buf := new(bytes.Buffer)
 
-	err = templ.Execute(buf, nil)
+	err := templ.Execute(buf, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -34,7 +44,7 @@ func RenderTemplate(w http.ResponseWriter, tmp string) {
 	}
 }
 
-func createTemplateCache() (map[string]*template.Template, error) {
+func CreateTemplateCache() (map[string]*template.Template, error) {
 	tempCache := map[string]*template.Template{}
 	pages, err := filepath.Glob("./templates/*.page.tmpl")
 	if err != nil {

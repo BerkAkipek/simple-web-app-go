@@ -19,5 +19,6 @@ This is a minimal Go web server that serves HTML templates. It's designed for le
 
 ```bash
 git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+cd ./simple-web-app-go
+go run ./cmd/web/
 ```
